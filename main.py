@@ -8,7 +8,7 @@ def get_user_choice():
             print("Choix invalide. Veuillez choisir entre Pierre, Papier, Ciseaux ou Quitter.")
     return user_choice
 
-def get_computer_choice():
+def get_computer_choice()
     return choice(["pierre", "papier", "ciseaux"])
 
 def determine_winner(user_choice, computer_choice):
