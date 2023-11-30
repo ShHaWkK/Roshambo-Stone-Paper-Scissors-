@@ -40,17 +40,14 @@ def update_choices_display(user_choice, computer_choice):
 def quitter():
     window.destroy()
 
-# Initialisation de Tkinter
 window = tk.Tk()
 window.title("Pierre-Papier-Ciseaux")
 window.configure(bg='white')
 
-# Chargement et redimensionnement des images
 pierre_image = resize_image("./picture/pierre.png", 80, 80)
 papier_image = resize_image("./picture/papier.png", 80, 80)
 ciseaux_image = resize_image("./picture/ciseaux.png", 80, 80)
 
-# Dictionnaire des images
 choice_images = {"pierre": pierre_image, "papier": papier_image, "ciseaux": ciseaux_image}
 
 scores = {"joueur": 0, "ordinateur": 0, "egalites": 0}
