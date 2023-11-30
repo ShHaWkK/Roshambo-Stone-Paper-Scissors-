@@ -53,37 +53,31 @@ ciseaux_image = resize_image("./picture/ciseaux.png", 80, 80)
 # Dictionnaire des images
 choice_images = {"pierre": pierre_image, "papier": papier_image, "ciseaux": ciseaux_image}
 
-# Variables globales
 scores = {"joueur": 0, "ordinateur": 0, "egalites": 0}
 winner_text = tk.StringVar()
 score_text = tk.StringVar()
 computer_choice_text = tk.StringVar()
 
-# Création de l'interface
 frame_choix = tk.Frame(window, bg='white')
 frame_choix.pack(pady=10)
 
 frame_resultat = tk.Frame(window, bg='white')
 frame_resultat.pack(pady=10)
 
-# Boutons pour les choix
 tk.Button(frame_choix, image=pierre_image, command=lambda: determine_winner("pierre")).pack(side=tk.LEFT)
 tk.Button(frame_choix, image=papier_image, command=lambda: determine_winner("papier")).pack(side=tk.LEFT)
 tk.Button(frame_choix, image=ciseaux_image, command=lambda: determine_winner("ciseaux")).pack(side=tk.LEFT)
 
-# Labels pour afficher les choix et les résultats
 user_choice_image_label = tk.Label(frame_resultat, bg='white')
 user_choice_image_label.pack(side=tk.LEFT)
 computer_choice_image_label = tk.Label(frame_resultat, bg='white')
 computer_choice_image_label.pack(side=tk.RIGHT)
 
-# Labels pour afficher le score, le gagnant et le choix de l'ordinateur
 tk.Label(window, textvariable=computer_choice_text, bg='white', font=("Helvetica", 12)).pack()
 tk.Label(window, textvariable=winner_text, bg='white', font=("Helvetica", 14)).pack()
 tk.Label(window, textvariable=score_text, bg='white', font=("Helvetica", 14)).pack()
 
-# Bouton Quitter
 tk.Button(window, text="Quitter", command=quitter, bg='light grey').pack(pady=10)
 
-update_scores()  # Initialiser l'affichage des scores
+update_scores()  
 window.mainloop()
