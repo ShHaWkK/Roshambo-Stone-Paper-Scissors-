@@ -1,13 +1,13 @@
 import tkinter as tk
-from tkinter import PhotoImage
-from PIL import Image, ImageTk
 from random import choice
+from tkinter import messagebox
+from tkinter import ttk
 
-def resize_image(image_path, new_width, new_height):
-    image = Image.open(image_path)
-    resized_image = image.resize((new_width, new_height), Image.ANTIALIAS)
-    return ImageTk.PhotoImage(resized_image)
 
+def resize_image(image_path, width, height):
+    image = tk.PhotoImage(file=image_path)
+    image = image.subsample(2)
+    return image
 def get_computer_choice():
     return choice(["pierre", "papier", "ciseaux"])
 
@@ -19,17 +19,14 @@ def determine_winner(user_choice):
     if user_choice == computer_choice:
         scores["egalites"] += 1
         winner_text.set("Égalité !")
-        result_frame.configure(bg='light gray')
     elif (user_choice == "pierre" and computer_choice == "ciseaux") or \
          (user_choice == "papier" and computer_choice == "pierre") or \
          (user_choice == "ciseaux" and computer_choice == "papier"):
         scores["joueur"] += 1
         winner_text.set("Vous avez gagné !")
-        result_frame.configure(bg='light green')
     else:
         scores["ordinateur"] += 1
         winner_text.set("L'ordinateur a gagné.")
-        result_frame.configure(bg='salmon')
 
     update_scores()
 
@@ -46,7 +43,7 @@ def quitter():
 # Initialisation de Tkinter
 window = tk.Tk()
 window.title("Pierre-Papier-Ciseaux")
-window.configure(bg='light blue')
+window.configure(bg='white')
 
 # Chargement et redimensionnement des images
 pierre_image = resize_image("./picture/pierre.png", 80, 80)
@@ -63,27 +60,27 @@ score_text = tk.StringVar()
 computer_choice_text = tk.StringVar()
 
 # Création de l'interface
-choice_frame = tk.Frame(window, bg='light blue')
-choice_frame.pack(pady=10)
+frame_choix = tk.Frame(window, bg='white')
+frame_choix.pack(pady=10)
 
-result_frame = tk.Frame(window, bg='light blue')
-result_frame.pack(pady=10)
+frame_resultat = tk.Frame(window, bg='white')
+frame_resultat.pack(pady=10)
 
 # Boutons pour les choix
-tk.Button(choice_frame, image=pierre_image, command=lambda: determine_winner("pierre"), bg='light blue').pack(side=tk.LEFT, padx=5)
-tk.Button(choice_frame, image=papier_image, command=lambda: determine_winner("papier"), bg='light blue').pack(side=tk.LEFT, padx=5)
-tk.Button(choice_frame, image=ciseaux_image, command=lambda: determine_winner("ciseaux"), bg='light blue').pack(side=tk.LEFT, padx=5)
+tk.Button(frame_choix, image=pierre_image, command=lambda: determine_winner("pierre")).pack(side=tk.LEFT)
+tk.Button(frame_choix, image=papier_image, command=lambda: determine_winner("papier")).pack(side=tk.LEFT)
+tk.Button(frame_choix, image=ciseaux_image, command=lambda: determine_winner("ciseaux")).pack(side=tk.LEFT)
 
 # Labels pour afficher les choix et les résultats
-user_choice_image_label = tk.Label(result_frame, bg='light blue')
-user_choice_image_label.pack(side=tk.LEFT, padx=10)
-computer_choice_image_label = tk.Label(result_frame, bg='light blue')
-computer_choice_image_label.pack(side=tk.RIGHT, padx=10)
+user_choice_image_label = tk.Label(frame_resultat, bg='white')
+user_choice_image_label.pack(side=tk.LEFT)
+computer_choice_image_label = tk.Label(frame_resultat, bg='white')
+computer_choice_image_label.pack(side=tk.RIGHT)
 
 # Labels pour afficher le score, le gagnant et le choix de l'ordinateur
-tk.Label(window, textvariable=computer_choice_text, bg='light blue', font=("Helvetica", 12)).pack()
-tk.Label(result_frame, textvariable=winner_text, bg='light blue', font=("Helvetica", 14)).pack()
-tk.Label(window, textvariable=score_text, bg='light blue', font=("Helvetica", 14)).pack()
+tk.Label(window, textvariable=computer_choice_text, bg='white', font=("Helvetica", 12)).pack()
+tk.Label(window, textvariable=winner_text, bg='white', font=("Helvetica", 14)).pack()
+tk.Label(window, textvariable=score_text, bg='white', font=("Helvetica", 14)).pack()
 
 # Bouton Quitter
 tk.Button(window, text="Quitter", command=quitter, bg='light grey').pack(pady=10)
