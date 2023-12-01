@@ -7,4 +7,6 @@
 The game allows users to choose between stone, paper and scissors to play against the computer, with score tracking and real-time results display.
 
 # Install pyInstaller
+```
 pip install pyinstaller
+```
