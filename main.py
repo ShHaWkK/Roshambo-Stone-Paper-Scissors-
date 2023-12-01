@@ -2,6 +2,20 @@ import tkinter as tk
 from random import choice
 from tkinter import PhotoImage
 
+import sys
+import os
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+# Now use this function to set your image paths
+rock_image = resize_image(resource_path("picture/rock.png"), 80, 80)
+paper_image = resize_image(resource_path("picture/paper.png"), 80, 80)
+scissors_image = resize_image(resource_path("picture/scissors.png"), 80, 80)
+
+
 def resize_image(image_path, width, height):
     image = tk.PhotoImage(file=image_path)
     image = image.subsample(2)
