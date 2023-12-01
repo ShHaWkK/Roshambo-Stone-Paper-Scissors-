@@ -10,6 +10,10 @@ The game allows users to choose between stone, paper and scissors to play agains
 ```
 pip install pyinstaller
 ```
+## Then use that command  : 
+```
+pyinstaller --onefile --windowed main.py 
+```
 renitialize the main.exe file (if it does not work after installing pyInstaller). 
 
 # You will need to use the command 
