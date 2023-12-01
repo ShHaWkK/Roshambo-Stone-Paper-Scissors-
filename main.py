@@ -1,24 +1,19 @@
 import tkinter as tk
 from random import choice
 from tkinter import PhotoImage
-
 import sys
 import os
 
+# Function to determine the resource path where the images are located
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
-# Now use this function to set your image paths
-rock_image = resize_image(resource_path("picture/rock.png"), 80, 80)
-paper_image = resize_image(resource_path("picture/paper.png"), 80, 80)
-scissors_image = resize_image(resource_path("picture/scissors.png"), 80, 80)
-
-
+# Function to resize the image (defined before use)
 def resize_image(image_path, width, height):
-    image = tk.PhotoImage(file=image_path)
-    image = image.subsample(2)
+    image = PhotoImage(file=resource_path(image_path))
+    image = image.subsample(2)  # You might want to adjust subsampling based on the original image size
     return image
 
 def get_computer_choice():
@@ -53,41 +48,53 @@ def update_choices_display(user_choice, computer_choice):
 def quit_game():
     window.destroy()
 
+# Initialize the main window
 window = tk.Tk()
 window.title("Rock-Paper-Scissors")
 window.configure(bg='white')
 
-rock_image = resize_image("./picture/rock.png", 80, 80)
-paper_image = resize_image("./picture/paper.png", 80, 80)
-scissors_image = resize_image("./picture/scissors.png", 80, 80)
+# Use the resource_path function to specify the correct path for the images
+rock_image = resize_image("picture/rock.png", 80, 80)
+paper_image = resize_image("picture/paper.png", 80, 80)
+scissors_image = resize_image("picture/scissors.png", 80, 80)
 
+# Store the PhotoImage objects in a dictionary
 choice_images = {"rock": rock_image, "paper": paper_image, "scissors": scissors_image}
 
+# Initialize the scores and text variables
 scores = {"player": 0, "computer": 0, "ties": 0}
 winner_text = tk.StringVar()
 score_text = tk.StringVar()
 computer_choice_text = tk.StringVar()
 
+# Create frames for choice and result display
 choice_frame = tk.Frame(window, bg='white')
 choice_frame.pack(pady=10)
 
 result_frame = tk.Frame(window, bg='white')
 result_frame.pack(pady=10)
 
+# Create buttons for the choices
 tk.Button(choice_frame, image=rock_image, command=lambda: determine_winner("rock")).pack(side=tk.LEFT)
 tk.Button(choice_frame, image=paper_image, command=lambda: determine_winner("paper")).pack(side=tk.LEFT)
 tk.Button(choice_frame, image=scissors_image, command=lambda: determine_winner("scissors")).pack(side=tk.LEFT)
 
+# Labels for displaying the user and computer choices
 user_choice_image_label = tk.Label(result_frame, bg='white')
 user_choice_image_label.pack(side=tk.LEFT)
 computer_choice_image_label = tk.Label(result_frame, bg='white')
 computer_choice_image_label.pack(side=tk.RIGHT)
 
+# Labels for displaying the score and results
 tk.Label(window, textvariable=computer_choice_text, bg='white', font=("Helvetica", 12)).pack()
 tk.Label(window, textvariable=winner_text, bg='white', font=("Helvetica", 14)).pack()
 tk.Label(window, textvariable=score_text, bg='white', font=("Helvetica", 14)).pack()
 
+# Button to quit the game
 tk.Button(window, text="Quit", command=quit_game, bg='light grey').pack(pady=10)
 
-update_scores()  
+# Initialize the scores display
+update_scores()
+
+# Run the main loop
 window.mainloop()
