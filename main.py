@@ -13,7 +13,7 @@ def resource_path(relative_path):
 # Function to resize the image (defined before use)
 def resize_image(image_path, width, height):
     image = PhotoImage(file=resource_path(image_path))
-    image = image.subsample(2)  # You might want to adjust subsampling based on the original image size
+    image = image.subsample(2)  
     return image
 
 def get_computer_choice():
