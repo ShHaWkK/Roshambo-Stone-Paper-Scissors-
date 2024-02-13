@@ -58,7 +58,6 @@ rock_image = resize_image("picture/rock.png", 80, 80)
 paper_image = resize_image("picture/paper.png", 80, 80)
 scissors_image = resize_image("picture/scissors.png", 80, 80)
 
-# Store the PhotoImage objects in a dictionary
 choice_images = {"rock": rock_image, "paper": paper_image, "scissors": scissors_image}
 
 # Initialize the scores and text variables
