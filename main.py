@@ -90,10 +90,8 @@ tk.Label(window, textvariable=computer_choice_text, bg='white', font=("Helvetica
 tk.Label(window, textvariable=winner_text, bg='white', font=("Helvetica", 14)).pack()
 tk.Label(window, textvariable=score_text, bg='white', font=("Helvetica", 14)).pack()
 
-# Button to quit the game
 tk.Button(window, text="Quit", command=quit_game, bg='light grey').pack(pady=10)
 
-# Initialize the scores display
 update_scores()
 
 
