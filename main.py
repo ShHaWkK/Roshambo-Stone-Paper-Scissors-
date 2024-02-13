@@ -48,7 +48,7 @@ def update_choices_display(user_choice, computer_choice):
 def quit_game():
     window.destroy()
 
-# Initialize the main window
+
 window = tk.Tk()
 window.title("Rock-Paper-Scissors")
 window.configure(bg='white')
