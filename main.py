@@ -96,5 +96,5 @@ tk.Button(window, text="Quit", command=quit_game, bg='light grey').pack(pady=10)
 # Initialize the scores display
 update_scores()
 
-# Run the main loop
+
 window.mainloop()
