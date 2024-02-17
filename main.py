@@ -86,6 +86,7 @@ tk.Button(choice_frame, image=scissors_image, command=lambda: determine_winner("
 # Labels for displaying the user and computer choices
 user_choice_image_label = tk.Label(result_frame, bg='white')
 user_choice_image_label.pack(side=tk.LEFT)
+
 computer_choice_image_label = tk.Label(result_frame, bg='white')
 computer_choice_image_label.pack(side=tk.RIGHT)
 
